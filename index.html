@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"
+    ></script>
+    <meta charset="utf-8" />
+    <title>Fyzika kytarové struny</title>
+  </head>
+  <body>
+    <main>
+      <h1>Fyzika kytarové struny</h1>
+      <p>
+        Ačkoliv zadáním práce je, podívat se pohledem oblasti našeho zájmu na
+        fyziku, a bylo by tedy vhodnější o ní třeba zahrát písničku, podívám se
+        naopak pomocí fyziky na vibrace (nejen) kytarové struny - jak vypočítáme
+        její frekvenci; proč se dějí ta kouzla při podržení prstu nad některými
+        místy a proč jsou pražce na hmatníku tam, kde jsou.
+      </p>
+
+      <p>
+        Jako první se podíváme na to, jak taková struna vibruje. Lehce
+        přičichneme k diferenciálním rovnicím a nakonec odvodíme Mersennovu
+        rovnici. Ale postupně.
+      </p>
+
+      <h3>Stojaté vlnění</h3>
+      <p>
+        Každé vlnění popisují, mimo jiné, jeho vlnová délka \(\lambda\),
+        rychlost šíření \(v\) a frekvence \(f\) a v určitém bodě fáze
+        \(\varphi\). Zamysleme se, kdy se na naší struně délky \(L\) se dvěma
+        pevnými konci může dané vlnění udržet. Během odrazu o pevný konec se, na
+        rozdíl od odrazu od volného konce, změní fáze vlny o 180° - z hřebenu se
+        stane údolí a naopak.
+      </p>
+
+      <div id="interakce_odraz">
+        <canvas id="canvas_odraz"></canvas>
+        <input type="checkbox" name="Spuštěno" id="odraz_spustit" checked />
+        <label for="odraz_spustit">Spuštěno</label>
+        <input type="checkbox" name="Volný konec" id="odraz_volny" />
+        <label for="odraz_volny">Volný konec</label>
+        <input
+          type="checkbox"
+          name="Nevyrušená původní vlna"
+          id="odraz_after"
+          checked
+        />
+        <label for="odraz_after">Nevyrušená původní vlna</label>
+        <input
+          type="checkbox"
+          name="Nevyrušená odražená vlna"
+          id="odraz_undisturbed"
+          checked
+        />
+        <label for="odraz_undisturbed">Nevyrušená odražená vlna</label>
+      </div>
+
+      <p>
+        Když se potkají dvě sinusoidy pohybující se opačným směrem, interferují
+        a vzniká tzv. stojaté vlnění. To je specifické tím, že se některé jeho
+        body vůbec nepohybují - těm říkáme uzly - a jiné se hýbou až do
+        maximální amplitudy - těm zase kmitny. Pro naši strunu platí, že se
+        určitě nepohybují její konce. Je proto v zájmu našeho vlnění, aby v
+        těchto bodech mělo uzly. Kdy toto nastává?
+      </p>
+
+      <div id="interakce_skladani">
+        <canvas id="canvas_skladani"></canvas>
+        <input type="checkbox" name="Spuštěno" id="skladani_spustit" checked />
+        <label for="skladani_spustit">Spuštěno</label
+        ><input
+          type="range"
+          id="skladani_l"
+          name="skladani_l"
+          min="0.1"
+          max="3"
+          step="0.1"
+        />
+        <label for="skladani_l" id="label_skladani_l">Lambda</label>
+      </div>
+
+      <p>
+        Po jednom odrazu se vlna musí vrátit do počátečního bodu v o přesně 180°
+        odlišné fázi, než byla vyslána, aby tam mohl vzniknout uzel. Po dalším
+        odrazu se její fáze opět otočí a bude tedy pokračovat tak, jak začala.
+        Musí tedy platit, že přesně po dvou délkách struny musí být ve stejné
+        fázi, jako byla na začátku. Ve stejné fázi je vždy právě o celou vlnovou
+        délku dál, musí proto platit, že \(\lambda\) dělí \(2L\).
+      </p>
+      <p>\[n = \frac{2L}{\lambda}, \quad n \in \mathbb{N}\]</p>
+      <div id="interakce_harmony">
+        <canvas id="canvas_harmony"></canvas>
+        <input type="checkbox" name="Spuštěno" id="harmony_spustit" checked />
+        <label for="harmony_spustit">Spuštěno</label
+        ><input
+          type="range"
+          id="harmony_n"
+          name="harmony_n"
+          min="1"
+          max="10"
+          step="1"
+        />
+        <label for="harmony_n" id="label_harmony_n">n</label>
+      </div>
+
+      <p>
+        Určitě nezůstalo bez povšimnutí, že \(n + 1\) odpovídá počtu uzlů na
+        struně. Sama od sebe nám totiž kytarová struna začne vibrovat tím
+        nejjednodušším způsobem, kdy \(n = 1\). My jí v tom však můžeme zabránit
+        - třeba tím, že přesně v její polovině, kde by měla mít největší
+        amplitudu vibrací, nad ní podržíme prst. Vznikne tam tak další uzel a
+        struna začne vibrovat s \(n = 2\). Přesně to se stane, když zahrajeme a
+        podržíme prst nad 12. pražcem! Podobně tak můžeme podržet prst nad
+        třetinami (přibližně 7. pražec), čtvrtinami (nad 5. pražcem) atd. Jak to
+        souvisí s frekvencí a výsledným tónem si ukážeme níže, po odvození
+        vztahu mezi frekvencí a vlnovou délkou.
+      </p>
+
+      <h3>Rychlost vlnění</h3>
+      <p>
+        Stále mějme strunu délky \(L\), lineární hustoty \(\mu \), kterou
+        napínáme silou \(T\). Na tu “zahrajeme”, takže začne vibrovat - vychýlí
+        se od rovnovážné polohy o nějakou odchylku, kterou však budeme považovat
+        vzhledem k celkové délce struny za dostatečně malou.
+      </p>
+      <p>
+        Uvažujme rychlost, kterou se bude tato námi vyvolaná vlna po struně
+        šířit. Zavedeme kartézské souřadnice tak, že struna je natažena ve směru
+        osy \(x\) a vychyluje se ve směru osy \(y\). Zaměřme se na krátký úsek
+        délky \(\Delta x\) (jelikož je výchylka malá, uvažujeme, že to odpovídá
+        i délce struny). Síla působící na tento úsek ve směru osy \(x\) musí být
+        0, jelikož struna zrychluje pouze ve směru osy \(y\). Označíme sílu,
+        kterou je tento úsek z jedné strany napínán, \(T\).
+      </p>
+    </main>
+    <script src="odraz.js"></script>
+    <script src="skladani.js"></script>
+    <script src="harmony.js"></script>
+  </body>
+</html>
