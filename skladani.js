@@ -5,18 +5,23 @@ const s_skladani = (sketch) => {
     sketch.background(180);
   };
 
+  let run = document.querySelector("#skladani_spustit").checked;
+
   let t = 0;
 
   let l = document.querySelector("#skladani_l").valueAsNumber;
-  document.querySelector("#label_skladani_l").innerText = "Lambda: " + l;
+  document.querySelector("#label_skladani_l").innerText = l;
 
   document.querySelector("#skladani_l").addEventListener("input", () => {
     l = document.querySelector("#skladani_l").valueAsNumber;
 
-    document.querySelector("#label_skladani_l").innerText = "Lambda: " + l;
-  });
+    document.querySelector("#label_skladani_l").innerText = l;
 
-  let run = document.querySelector("#skladani_spustit").checked;
+    if (!run) {
+      sketch.loop();
+      sketch.noLoop();
+    }
+  });
 
   if (run) {
     sketch.loop();
@@ -34,7 +39,7 @@ const s_skladani = (sketch) => {
   });
 
   sketch.draw = () => {
-    sketch.background(255);
+    sketch.clear();
     sketch.translate(sketch.width / 2, sketch.height / 2);
 
     sketch.stroke(0, 0, 0);
@@ -48,9 +53,12 @@ const s_skladani = (sketch) => {
     sketch.text("3", 243, 80);
     sketch.drawingContext.setLineDash([5]);
     sketch.line(-200, 0, 250, 0);
-    t += 0.05;
-    if (t > 2 * Math.PI) {
-      t = 0;
+
+    if (run) {
+      t += 0.05;
+      if (t > 2 * Math.PI) {
+        t = 0;
+      }
     }
 
     sketch.drawingContext.setLineDash([]);

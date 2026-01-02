@@ -6,19 +6,23 @@ const s_harmony = (sketch) => {
   };
 
   let t = 0;
+  let run = document.querySelector("#harmony_spustit").checked;
 
   let n = document.querySelector("#harmony_n").valueAsNumber;
-  document.querySelector("#label_harmony_n").innerText = "n: " + n;
+  document.querySelector("#label_harmony_n").innerText = n;
   let l = 6 / n;
 
   document.querySelector("#harmony_n").addEventListener("input", () => {
     n = document.querySelector("#harmony_n").valueAsNumber;
     l = 6 / n;
 
-    document.querySelector("#label_harmony_n").innerText = "n: " + n;
-  });
+    document.querySelector("#label_harmony_n").innerText = n;
 
-  let run = document.querySelector("#harmony_spustit").checked;
+    if (!run) {
+      sketch.loop();
+      sketch.noLoop();
+    }
+  });
 
   if (run) {
     sketch.loop();
@@ -36,7 +40,7 @@ const s_harmony = (sketch) => {
   });
 
   sketch.draw = () => {
-    sketch.background(255);
+    sketch.clear();
     sketch.translate(sketch.width / 2, sketch.height / 2);
 
     sketch.stroke(0, 0, 0);
@@ -50,9 +54,12 @@ const s_harmony = (sketch) => {
     sketch.text("3", 243, 80);
     sketch.drawingContext.setLineDash([5]);
     sketch.line(-200, 0, 250, 0);
-    t += 0.05;
-    if (t > 2 * Math.PI) {
-      t = 0;
+
+    if (run) {
+      t += 0.05;
+      if (t > 2 * Math.PI) {
+        t = 0;
+      }
     }
 
     sketch.drawingContext.setLineDash([]);

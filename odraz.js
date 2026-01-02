@@ -20,15 +20,27 @@ const s_odraz = (sketch) => {
 
   document.querySelector("#odraz_after").addEventListener("click", () => {
     odraz_showAfter = document.querySelector("#odraz_after").checked;
+    if (!odraz_run) {
+      sketch.loop();
+      sketch.noLoop();
+    }
   });
 
   document.querySelector("#odraz_volny").addEventListener("click", () => {
     odraz_freeEnd = document.querySelector("#odraz_volny").checked;
+    if (!odraz_run) {
+      sketch.loop();
+      sketch.noLoop();
+    }
   });
 
   document.querySelector("#odraz_undisturbed").addEventListener("click", () => {
     odraz_showUndisturbed =
       document.querySelector("#odraz_undisturbed").checked;
+    if (!odraz_run) {
+      sketch.loop();
+      sketch.noLoop();
+    }
   });
 
   document.querySelector("#odraz_spustit").addEventListener("click", () => {
@@ -41,16 +53,18 @@ const s_odraz = (sketch) => {
   });
 
   sketch.draw = () => {
-    sketch.background(255);
+    sketch.clear();
     sketch.translate(sketch.width / 2, sketch.height / 2);
 
     sketch.stroke(0, 0, 0);
     sketch.strokeWeight(odraz_freeEnd ? 1 : 5);
     sketch.line(0, -sketch.height / 2 + 50, 0, sketch.height / 2 - 50);
 
-    odraz_t += 0.05;
-    if (odraz_t > 10) {
-      odraz_t = -10;
+    if (odraz_run) {
+      odraz_t += 0.05;
+      if (odraz_t > 10) {
+        odraz_t = -10;
+      }
     }
 
     sketch.drawingContext.setLineDash([6]);
