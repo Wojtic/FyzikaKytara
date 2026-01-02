@@ -1,8 +1,6 @@
 const s_skladani = (sketch) => {
   sketch.setup = () => {
     sketch.createCanvas(700, 200, document.querySelector("#canvas_skladani"));
-
-    sketch.background(180);
   };
 
   let run = document.querySelector("#skladani_spustit").checked;
