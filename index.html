@@ -186,8 +186,111 @@
         délky \(\Delta x\) (jelikož je výchylka malá, uvažujeme, že to odpovídá
         i délce struny). Síla působící na tento úsek ve směru osy \(x\) musí být
         0, jelikož struna zrychluje pouze ve směru osy \(y\). Označíme sílu,
-        kterou je tento úsek z jedné strany napínán, \(T\).
+        kterou je tento úsek z jedné strany ve směru osy \(x\) napínán, \(T\).
       </p>
+      <img
+        src="odvozeni.png"
+        alt="Ilustrace vibrující struny"
+        width="50%"
+        style="margin: 0 auto; display: block"
+      />
+      <p>
+        Působí-li na začátku našeho úseku síla \(T_1\) a vlákno svírá v tomto
+        bodě se směrem osy \(x\) úhel \(\alpha\), tak platí, že velikost síly
+        \(T\) je \(T_{1x} = T_1 \cos \alpha \approx T \). Stejně tak na opačném
+        konci lze \(T\) přepsat jako \(T_{2x} = T_2 \cos \beta \approx T \).
+      </p>
+      <p>
+        Podobně, rozložíme-li tyto síly na jejich komponenty ve směru osy \(y\),
+        dostáváme
+      </p>
+      <p>\[T_{1y} = T_1 \sin \alpha\] \[T_{2y} = T_2 \sin \beta \]</p>
+      <p>
+        Z obrázku vidíme, že mají opačný směr - jejich výslednicí bude jejich
+        rozdíl. Dosadíme pomocí druhého Newtonova zákona vztah pro zrychlení a
+        hmotnost, za kterou dosazujeme součin délky \(\Delta x\) a lineární
+        hustoty \(\mu\).
+      </p>
+      <p>
+        \[F_y = T_{1y} - T_{2y} =T_1 \sin \alpha -T_2 \sin \beta = \Delta m a_y
+        \approx \mu \Delta x a_y\]
+      </p>
+      <p>
+        Podělíme obě strany \(T\), přičemž využijeme předchozích vztahů pro
+        složku ve směru osy \(x\). Můžeme si tak vybrat ten se shodným úhlem
+        jako v \(\sin\) a dostat tak vždy funkci \(\tan\).
+      </p>
+      <p>
+        \[\frac{T_1 \sin \alpha}{T_1 \cos \alpha} - \frac{T_2 \sin \beta}{T_2
+        \cos \beta} = \tan \alpha - \tan \beta = \frac{\mu \Delta x}{T} a_y\]
+      </p>
+      <p>
+        Jak víme, \(\tan\) je protilehlá přepona ku přilehlé. Zvolíme-li na
+        koncích vlákna malý úsek na ose \(x\) a jemu odpovídající změnu
+        souřadnice \(y\) (o kolik stoupne či klesne struna za ten daný úsek),
+        tak právě jejich poměr bude hledaná hodnota \(\tan\). Tato definice však
+        odpovídá i derivaci \(y\) podle \(x\) v daném bodě, čehož využijeme k
+        přepisu vztahu. Vzdálenost struny od rovnovážné polohy \(y\) je závislá
+        jak na souřadnici \(x\), tak na čase \(t\). Jedná se proto o funkci více
+        proměnných a my dostáváme parciální derivace. Také ekvivalentně
+        nahradíme zrychlení ve směru osy \(y\) za druhou derivaci \(y\) podle
+        času. Přesuneme \(\Delta x\) na levou stranu a pohlídáme zneménka, aby
+        seděla vzhledem k definici úhlů.
+      </p>
+      <p>
+        \[ \frac{1}{\Delta x}\left(\left.\frac{\partial y}{\partial
+        x}\right|^{x+\Delta x}-\left.\frac{\partial y}{\partial
+        x}\right|^x\right)=\frac{\mu}{T}\frac{\partial^2 y}{\partial t^2} \]
+      </p>
+      <p>
+        Nyní už pouze zbývá si všimnout, že jsme na levé straně dostali další
+        derivaci. Když se bude \(\Delta x\) postupně blížit k nule, tak
+        počítáme, jak se derivace \(y\) podle \(x\) změní za krátký úsek, děleno
+        délkou toho úseku. To je však přesně druhá derivace \(y\) podle \(x\).
+        Naše rovnice tak dostává finální podobu:
+      </p>
+      <p>
+        \[\frac{\partial^2 y}{\partial x^2} = \frac{\mu}{T} \frac{\partial^2
+        y}{\partial t^2}\]
+      </p>
+      <p>
+        Nojo, jenže co teď s tím? Kdybychom byli ostřílení v řešení
+        diferenciálních rovnic, tak hned jásáme, protože na nás vypadla známá
+        vlnová rovnice. Jelikož nám (nebo minimálně mně) tyto znalosti chybí,
+        nezbývá nám nic jiného, než nějaké, ne nutně nejobecnější, řešení
+        uhodnout. Zatím jsme se setkali se spoustou sinusoid, sestrojme tedy
+        takovou, aby se v čase měnila s úhlovou rychlostí \(\omega\) a měla
+        vlnovou délku \(\lambda\).
+      </p>
+      <p>\[y(x, t) = \sin\left(\omega t + \frac{2\pi}{\lambda}x\right)\]</p>
+      <p>Zkusíme tedy spočítat parciální derivace:</p>
+      <p>
+        \[\frac{\partial^2 y}{\partial x^2} =
+        -\left(\frac{2\pi}{\lambda}\right)^2 \sin\left(\omega t +
+        \frac{2\pi}{\lambda}x\right)\] \[\frac{\partial^2 y}{\partial t^2} =
+        -\omega^2 \sin\left(\omega t + \frac{2\pi}{\lambda}x\right)\]
+      </p>
+      <p>A následně dosadit do naší rovnice:</p>
+      <p>
+        \[-\left(\frac{2\pi}{\lambda}\right)^2 \sin\left(\omega t +
+        \frac{2\pi}{\lambda}x\right) = \frac{\mu}{T} \left(-\omega^2
+        \sin\left(\omega t + \frac{2\pi}{\lambda}x\right)\right)\]
+      </p>
+      <p>Upravíme:</p>
+      <p>\[\frac{2\pi}{\lambda \omega} = \sqrt{\frac{\mu}{T}}\]</p>
+      <p>
+        Nyní můžeme využít vztah mezi vlnovou délkou, frekvencí a rychlostí
+        šíření vlnění:
+      </p>
+      <p>\[v = f \lambda = \frac{\omega}{2\pi} \lambda\]</p>
+      <p>A už naposled dosadit:</p>
+      <p>\[v = \frac{\omega}{2\pi} \lambda = \sqrt{\frac{T}{\mu}}\]</p>
+      <p>
+        Což je právě hledaný vztah pro rychlost šíření našeho vlnění. Ale nejen
+        to, díky předchozímu vztahu dostaneme i popis frekvence.
+      </p>
+
+      <h3>Mersennův zákon</h3>
     </main>
     <script src="odraz.js"></script>
     <script src="skladani.js"></script>

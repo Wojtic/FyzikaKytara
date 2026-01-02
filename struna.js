@@ -10,6 +10,8 @@ const s_struna = (sketch) => {
 
   let run = true;
 
+  let wasMousePressed = false;
+
   let t = 0;
   let l = 6;
 
@@ -70,6 +72,7 @@ const s_struna = (sketch) => {
         zvuk.stop();
         let volume = Math.min(Math.abs(A) / 30, 1);
         zvuk.setVolume(volume);
+        wasMousePressed = true;
         t = 0;
       }
     }
@@ -77,7 +80,10 @@ const s_struna = (sketch) => {
 
   sketch.mouseReleased = () => {
     run = true;
-    zvuk.play();
+    if (wasMousePressed) {
+      wasMousePressed = false;
+      zvuk.play();
+    }
   };
 };
 
