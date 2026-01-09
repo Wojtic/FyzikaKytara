@@ -21,13 +21,18 @@
   <body>
     <main>
       <h1>Fyzika kytarové struny</h1>
-      <p><i>Vojtěch Černý, 1.1.2026</i></p>
+      <p><i>Vojtěch Černý, leden 2026</i></p>
       <p>
         Ačkoliv zadáním práce je, podívat se pohledem oblasti našeho zájmu na
-        fyziku, a bylo by tedy vhodnější o ní třeba zahrát písničku, podívám se
-        naopak pomocí fyziky na vibrace (nejen) kytarové struny - jak vypočítáme
-        její frekvenci; proč se dějí ta kouzla při podržení prstu nad některými
-        místy a proč jsou pražce na hmatníku tam, kde jsou.
+        fyziku, a bylo by tedy vhodnější o ní třeba zahrát písničku (v tomto
+        ohledu doporučuji
+        <a href="https://eclecticon.info/music_yours_truly_science.htm"
+          >tento</a
+        >
+        počin Dr. Frenche z Winchesteru), podívám se naopak pomocí fyziky na
+        vibrace (nejen) kytarové struny - jak vypočítáme její frekvenci; proč se
+        dějí ta kouzla při podržení prstu nad některými místy a někdy možná i na
+        to, proč jsou pražce na hmatníku tam, kde jsou.
       </p>
 
       <p>
@@ -77,7 +82,11 @@
           </div>
         </div>
         <div class="popis">
-          <p>Odaz od bla bla bla, dopsat</p>
+          <p>
+            Růžová je struna s vlnou. Červeně čárkovaná je vlna, kdyby nikdy
+            neinteragovala s koncem a modrá je odražená vlna, kdyby se nesčítala
+            s neodraženou vlnou.
+          </p>
         </div>
       </div>
 
@@ -117,7 +126,11 @@
           </div>
         </div>
         <div class="popis">
-          <p>Stojaté vlnění lambda bla bla bla, dopsat</p>
+          <p>
+            Zde pozorujeme oranžovou barvou znázorněné vysílané vlnění o
+            konkrétní nastavitelné vlnové délce. Červená je pak odražená vlna a
+            tyto dvě vlny se sčítají za vzniku výsledné černé výchylky.
+          </p>
         </div>
       </div>
 
@@ -156,7 +169,7 @@
           </div>
         </div>
         <div class="popis">
-          <p>Stojaté vlnění n bla bla bla, dopsat</p>
+          <p>Stejná vizualizace jako výse, ale jsou vyznačeny uzly a nastavujeme rovnou \(n\).</p>
         </div>
       </div>
 
@@ -330,40 +343,16 @@
         na kytaře, kdy \(n=2\), tak je frekvence dvojnásobná, což je interval
         oktávy.
       </p>
-      <p>
-        S hudebními intervaly souvisí poslední věc, kterou bych chtěl na kytaře
-        rozebrat - proč jsou pražce tam, kde jsou?
-      </p>
 
-      <h3>Hudební intervaly</h3>
+      <h3>Závěr</h3>
 
       <p>
-        Naše hudba je založena na určitých hudebních intervalech. Každý tón
-        definuje jeho frekvence a intervalem rozumíme poměr mezi frekvencemi
-        dvou konkrétních tónů. Takovým nejzákladnějším hudebním intervalem je
-        oktáva, která odpovídá poměru frekvencí 1 : 2. Vlastností hudebních
-        intervalů, které v naší kultuře považujeme za pěkně znějící,
-        konsonantní, je celočíselný poměr (nebo alespoň blízkost k němu)
-        frekvencí, a to konkrétně pro malá čísla.
-      </p>
-
-      <p>
-        Jenže, jak si ukážeme níže, tato podmínka pro souzvuk dvou tónů, které
-        modelujeme jako jednu sinusoidu, nestačí.
-      </p>
-
-      <h3>Simulace</h3>
-
-      <p>
-        Když se totiž bavíme o zvuku třeba z kytary, tak se většinou nejedná o
-        pouze jednu sinusoidu. Kromě hlavní, nejnižší, frekvence, se ve
-        výlsedném zuvku objevuje i mnoho dalších vln s klesající amplitudou a
-        vyššími frekvencemi. Které vlny se tam objeví je pak vlastnost každého
-        hudebního nástroje.
-      </p>
-
-      <p>
-        
+        Názorně jsme ukázali, za jakých podmínek vzniká na struně stojaté
+        vlnění. Těchto znalostí jsme využili k odovození vztahu mezi napětím
+        struny, její délkou a frekvencí, kterou vibruje. Kdyby pro mě teď nebylo
+        vhodnější využití fyzikálního času příprava na olympiádu, rád bych se
+        ještě zaměřil na vzdálenosti mezi pražci a různé systémy ladění, tak
+        třeba příště :).
       </p>
 
       <h3>Zdroje</h3>
@@ -372,6 +361,23 @@
           >wikipedia.org - String vibration</a
         >
       </p>
+
+      <p>
+        Vizualizace jsou moje vlastní tvorba pomocí knihovny
+        <a href="https://p5js.org/">p5.js</a>.
+      </p>
+
+      <p>
+        Zdrojový kód celého článku je dostupný na
+        <a href="https://github.com/Wojtic/FyzikaKytara">github.com</a>.
+      </p>
+
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </main>
     <script src="odraz.js"></script>
     <script src="skladani.js"></script>
